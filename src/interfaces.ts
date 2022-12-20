@@ -44,3 +44,12 @@ export interface IEditedJob {
 	skillList: string;
 	todo: string;
 }
+
+export interface IAddedJob {
+	title: string;
+	company: string;
+	url: string;
+	description: string;
+	skillList: string;
+	todo: string;
+}

@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import * as model from './model.js';
-import { IEditedJob, IJob } from './interfaces.js';
+import { IEditedJob, IAddedJob, IJob } from './interfaces.js';
 
 const app = express();
 app.use(cors());
@@ -41,6 +41,16 @@ app.patch('/job', async (req: express.Request, res: express.Response) => {
 	const editedJob: IEditedJob = req.body;
 	const job: IJob = await model.saveEditedJob(editedJob);
 	if (job) {
+		res.status(200).send('ok');
+	} else {
+		res.status(500).send('job did not save');
+	}
+});
+
+app.post('/job', async (req: express.Request, res: express.Response) => {
+	const addedJob: IAddedJob = req.body;
+	const success = await model.saveAddedJob(addedJob);
+	if (success) {
 		res.status(200).send('ok');
 	} else {
 		res.status(500).send('job did not save');
