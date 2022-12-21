@@ -53,12 +53,21 @@ app.delete('/jobs/:id', async (req: express.Request, res: express.Response) => {
 });
 
 app.patch('/job', async (req: express.Request, res: express.Response) => {
-	const editedJob: IEditedJob = req.body;
-	const job: IJob = await model.saveEditedJob(editedJob);
-	if (job) {
-		res.status(200).send('ok');
+	const editedJob: IEditedJob = req.body.job;
+	const pin: string = req.body.pin;
+	if (pin !== process.env.BACKEND_PIN) {
+		res.status(401).send({
+			error: true,
+			statusIdCode: 'badPin',
+			message: `Bad pin.`
+		})
 	} else {
-		res.status(500).send('job did not save');
+		const job: IJob = await model.saveEditedJob(editedJob);
+		if (job) {
+			res.status(200).send('ok');
+		} else {
+			res.status(500).send('job did not save');
+		}
 	}
 });
 
