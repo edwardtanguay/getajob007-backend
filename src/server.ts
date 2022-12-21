@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
-const port = 3011;
+const port = process.env.PORT;
 
 app.get('/', (req: express.Request, res: express.Response) => {
 	res.send(model.getApiInstructionsHtml());
@@ -31,7 +31,7 @@ app.get('/skillTotals', (req: express.Request, res: express.Response) => {
 app.delete('/jobs/:id', async (req: express.Request, res: express.Response) => {
 	const id = Number(req.params.id);
 	const pin = req.body.pin;
-	if (pin !== process.env.BACKEND_PIN) {
+	if (pin !== process.env.PIN) {
 		res.status(401).send({
 			error: true,
 			statusIdCode: 'badPin',
@@ -55,7 +55,7 @@ app.delete('/jobs/:id', async (req: express.Request, res: express.Response) => {
 app.patch('/job', async (req: express.Request, res: express.Response) => {
 	const editedJob: IEditedJob = req.body.job;
 	const pin: string = req.body.pin;
-	if (pin !== process.env.BACKEND_PIN) {
+	if (pin !== process.env.PIN) {
 		res.status(401).send({
 			error: true,
 			statusIdCode: 'badPin',
@@ -74,7 +74,7 @@ app.patch('/job', async (req: express.Request, res: express.Response) => {
 app.post('/job', async (req: express.Request, res: express.Response) => {
 	const addedJob: IEditedJob = req.body.job;
 	const pin: string = req.body.pin;
-	if (pin !== process.env.BACKEND_PIN) {
+	if (pin !== process.env.PIN) {
 		res.status(401).send({
 			error: true,
 			statusIdCode: 'badPin',
@@ -92,7 +92,7 @@ app.post('/job', async (req: express.Request, res: express.Response) => {
 
 app.post('/identify-as-admin', (req: express.Request, res: express.Response) => {
 	const pin = req.body.pin;
-	if (pin !== process.env.BACKEND_PIN) {
+	if (pin !== process.env.PIN) {
 		res.status(401).send({
 			error: true,
 			statusIdCode: 'badPin',
