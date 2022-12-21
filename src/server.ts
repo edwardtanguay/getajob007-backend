@@ -75,12 +75,11 @@ app.post('/job', async (req: express.Request, res: express.Response) => {
 	const addedJob: IEditedJob = req.body.job;
 	const pin: string = req.body.pin;
 	if (pin !== process.env.BACKEND_PIN) {
-		console.log('sending 401');
 		res.status(401).send({
 			error: true,
 			statusIdCode: 'badPin',
 			message: `Bad pin.`
-		})
+		});
 	} else {
 		const success = await model.saveAddedJob(addedJob);
 		if (success) {
@@ -91,10 +90,18 @@ app.post('/job', async (req: express.Request, res: express.Response) => {
 	}
 });
 
-app.listen(port, () => {
-	console.log(`listening on http://localhost:${port}`);
+app.post('/identify-as-admin', (req: express.Request, res: express.Response) => {
+	const pin = req.body.pin;
+	if (pin !== process.env.BACKEND_PIN) {
+		res.status(401).send({
+			error: true,
+			statusIdCode: 'badPin',
+			message: `Bad pin.`
+		});
+	} else {
+		res.status(200).send('ok');
+	}
 });
-
 
 // TODO: replace with vitest test
 app.get('/test', (req: express.Request, res: express.Response) => {
@@ -109,4 +116,8 @@ app.get('/test', (req: express.Request, res: express.Response) => {
 		}
 	])
 	res.send(`next id is ${nextId}`);
+});
+
+app.listen(port, () => {
+	console.log(`listening on http://localhost:${port}`);
 });
