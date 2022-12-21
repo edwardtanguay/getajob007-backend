@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import * as model from './model.js';
 import { IEditedJob, IAddedJob, IJob } from './interfaces.js';
+import * as tools from './tools.js';
 
 const app = express();
 app.use(cors());
@@ -48,7 +49,7 @@ app.patch('/job', async (req: express.Request, res: express.Response) => {
 });
 
 app.post('/job', async (req: express.Request, res: express.Response) => {
-	const addedJob: IAddedJob = req.body;
+	const addedJob: IEditedJob = req.body;
 	const success = await model.saveAddedJob(addedJob);
 	if (success) {
 		res.status(200).send('ok');
@@ -59,4 +60,20 @@ app.post('/job', async (req: express.Request, res: express.Response) => {
 
 app.listen(port, () => {
 	console.log(`listening on http://localhost:${port}`);
+});
+
+
+// TODO: replace with vitest test
+app.get('/test', (req: express.Request, res: express.Response) => {
+	const nextId = tools.getNextId([
+		{
+			id: 1,
+			name: "aaa"
+		},
+		{
+			id: 22,
+			name: "bbb"
+		}
+	])
+	res.send(`next id is ${nextId}`);
 });
