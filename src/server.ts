@@ -35,7 +35,7 @@ app.delete('/jobs/:id', async (req: express.Request, res: express.Response) => {
 		res.status(401).send({
 			error: true,
 			statusIdCode: 'badPin',
-			message: `bad pin`
+			message: `Bad pin.`
 		})
 	} else {
 		const deletedObject = await model.deleteJob(id);
@@ -63,12 +63,22 @@ app.patch('/job', async (req: express.Request, res: express.Response) => {
 });
 
 app.post('/job', async (req: express.Request, res: express.Response) => {
-	const addedJob: IEditedJob = req.body;
-	const success = await model.saveAddedJob(addedJob);
-	if (success) {
-		res.status(200).send('ok');
+	const addedJob: IEditedJob = req.body.job;
+	const pin: string = req.body.pin;
+	if (pin !== process.env.BACKEND_PIN) {
+		console.log('sending 401');
+		res.status(401).send({
+			error: true,
+			statusIdCode: 'badPin',
+			message: `Bad pin.`
+		})
 	} else {
-		res.status(500).send('job did not save');
+		const success = await model.saveAddedJob(addedJob);
+		if (success) {
+			res.status(200).send('ok');
+		} else {
+			res.status(500).send('job did not save');
+		}
 	}
 });
 
