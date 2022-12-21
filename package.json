@@ -3,10 +3,10 @@
 	"version": "1.0.0",
 	"description": "",
 	"type": "module",
-	"main": "index.js",
+	"main": "server.js",
 	"scripts": {
 		"dev": "npm run build && nodemon",
-		"start": "npm run build && node dist/server.js",
+		"start": "node dist/server.js",
 		"deploy": "git pull --no-rebase && npm i && npm run build && pm2 restart getajob007-tanguay-eu",
 		"build": "tsc"
 	},
