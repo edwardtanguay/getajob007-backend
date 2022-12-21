@@ -34,6 +34,7 @@ app.delete('/jobs/:id', async (req: express.Request, res: express.Response) => {
 	if (pin !== process.env.BACKEND_PIN) {
 		res.status(401).send({
 			error: true,
+			statusIdCode: 'badPin',
 			message: `bad pin`
 		})
 	} else {
@@ -41,6 +42,7 @@ app.delete('/jobs/:id', async (req: express.Request, res: express.Response) => {
 		if (deletedObject === undefined) {
 			res.status(409).send({
 				error: true,
+				statusIdCode: 'recordDoesNotExist',
 				message: `job with id ${id} does not exist, deletion failed`
 			})
 		} else {
