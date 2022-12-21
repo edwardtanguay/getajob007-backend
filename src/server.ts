@@ -3,6 +3,9 @@ import cors from 'cors';
 import * as model from './model.js';
 import { IEditedJob, IAddedJob, IJob } from './interfaces.js';
 import * as tools from './tools.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -27,15 +30,24 @@ app.get('/skillTotals', (req: express.Request, res: express.Response) => {
 
 app.delete('/jobs/:id', async (req: express.Request, res: express.Response) => {
 	const id = Number(req.params.id);
-	const deletedObject = await model.deleteJob(id);
-	if (deletedObject === undefined) {
-		res.status(409).send({
+	const pin = req.body.pin;
+	if (pin !== process.env.BACKEND_PIN) {
+		res.status(401).send({
 			error: true,
-			message: `job with id ${id} does not exist, deletion failed`
+			message: `bad pin`
 		})
 	} else {
-		res.status(200).json(deletedObject);
-	}
+		const deletedObject = await model.deleteJob(id);
+		if (deletedObject === undefined) {
+			res.status(409).send({
+				error: true,
+				message: `job with id ${id} does not exist, deletion failed`
+			})
+		} else {
+			res.status(200).json(deletedObject);
+		}
+	};
+
 });
 
 app.patch('/job', async (req: express.Request, res: express.Response) => {
