@@ -123,7 +123,6 @@ export const saveEditedJob = async (editedJob: IEditedJob) => {
 export const saveAddedJob = async (addedJob: IEditedJob) => {
 	const totalBefore = db.data.jobs.length;
 	addedJob.id = tools.getNextId(db.data.jobs);
-	console.log(addedJob);
 	db.data.jobs.push(addedJob);
 	await db.write();
 	const totalAfter = db.data.jobs.length;
