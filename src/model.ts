@@ -21,7 +21,7 @@ a, h1 {
 	font-family: courier;
 }
 </style>
-<h1>GETAJOB API 222</h1>	
+<h1>GETAJOB API</h1>	
 <ul>
 	<li><a href="jobs">/jobs</a> - array of job listings will all fields</li>
 	<li><a href="todos">/todos</a> - array of todos with todo/company/title fields</li>
