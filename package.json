@@ -8,7 +8,7 @@
 		"dev": "npm run build && nodemon",
 		"start": "node dist/server.js",
 		"push": "npm run build && git add . && git commit -m \"predeploy\" && git push",
-		"deploy": "git pull --no-rebase && npm i && pm2 restart getajob007-backend",
+		"deploy": "git pull --no-rebase && npm i && npm run build && pm2 restart getajob007-backend",
 		"build": "tsc"
 	},
 	"nodemonConfig": {
