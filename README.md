@@ -12,7 +12,6 @@ This is a fullstack MERN frontend/backend example app which has all the moving p
 - Lowdb used as database (one JSON file in backend)
 - simple authentication solved with PIN which is an environment variable in the backend, i.e. all POST/PATCH/DELETE backend routes are protected
 
-
 ## install
 
 - go to your projects directory
@@ -20,6 +19,7 @@ This is a fullstack MERN frontend/backend example app which has all the moving p
 
 ## install backend
 
+- go to your projects directory
 - `cd getajob`
 - `git clone git@github.com:edwardtanguay/getajob007-backend.git`
 - `npm i`
