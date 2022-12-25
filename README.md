@@ -6,11 +6,11 @@ This is a fullstack MERN frontend/backend example app which has all the moving p
 
 ## features
 
-- fullstack app (with simple authentication and lowdb database)
-- Vite/React frontend with Sass, TypeScript and ES6 modules
-- Node/Express backend with TypeScript and ES6 modules
-- Lowdb used as database (one JSON file in backend)
-- simple authentication solved with PIN which is an environment variable in the backend, i.e. all POST/PATCH/DELETE backend routes are protected
+- **fullstack app** with simple authentication and lowdb database
+- **frontend:** Vite/React with Sass, TypeScript and ES6 modules
+- **backend:** Node/Express with TypeScript and ES6 modules
+- **database:** Lowdb (one JSON file in backend)
+- **authentication:** simple PIN which is an environment variable in the backend, i.e. all POST/PATCH/DELETE backend routes are protected
 
 ## install
 
