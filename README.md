@@ -11,10 +11,6 @@ This is a fullstack MERN frontend/backend example app which has all the moving p
 - **database:** Lowdb (one JSON file in backend)
 - **authentication:** simple PIN which is an environment variable in the backend, i.e. all POST/PATCH/DELETE backend routes are protected
 
-## how the site works
-
-![grafik](https://starters-backend.tanguay.eu/images/starters/frontBackMernCrudLowdbPin.gif)
-
 ## install
 
 - go to your projects directory
