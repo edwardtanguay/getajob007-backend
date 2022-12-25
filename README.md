@@ -13,7 +13,7 @@ This is a fullstack MERN frontend/backend example app which has all the moving p
 
 ## how the site works
 
-![grafik](http://localhost:3504/images/starters/frontBackMernCrudLowdbPin.gif)
+![grafik](https://starters-backend.tanguay.eu/images/starters/frontBackMernCrudLowdbPin.gif)
 
 ## install
 
