@@ -1,8 +1,8 @@
-# Frontend/Backend MERN CRUD app with Lowdb and PIN authentication
+# React frontend with simple Node/Express backend with one route
 
-This is a fullstack MERN frontend/backend example app which has all the moving parts for you to deploy an application online to e.g. Hetzner which allows users who know the admin PIN to edit, delete and add new items online. This is a good basis to study, learn and use if you have React/Node/Express skills but not yet database or auth security skills. It has everything you need to publish an online website in which users can identify themselves and change content online. Note that if you want to build a job-application management app, this is a useful basis which can be used as is. Otherwise you will have to replace the content with your own.
+This is the minimal starting point for a basic React-frontend with Node/Express-backend. Frontend is Vite React with Sass, React Router, useContext and a CLI command to create pages (`npm run cp`), while the backend is a minimal Node/Express but with a simple MVC structure with server.ts which calls a function in model.ts. This is a good project if you want to build a multi-page application that has a backend that serves it data.
 
-![grafik](https://starters.tanguay.eu/images/starters/frontBackMernCrudLowdbPin.png)
+![grafik](https://starters.tanguay.eu/images/starters/reactNodeSimpleApi.png)
 
 ## features
 
