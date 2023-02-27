@@ -9,7 +9,10 @@ app.use(cors());
 app.use(express.json());
 const port = process.env.PORT;
 app.get('/', (req, res) => {
-    const text = req.socket.remoteAddress;
+    // const text = req.socket.remoteAddress;
+    // const text = req.socket['remoteAddress'];
+    const text = req.socket['x-forwarded-for'];
+    console.log(req.socket);
     res.send(`[${text}]` + model.getApiInstructionsHtml());
 });
 app.get('/jobs', (req, res) => {

@@ -13,7 +13,10 @@ app.use(express.json());
 const port = process.env.PORT;
 
 app.get('/', (req: express.Request, res: express.Response) => {
-	const text = req.socket.remoteAddress;
+	// const text = req.socket.remoteAddress;
+	// const text = req.socket['remoteAddress'];
+	const text = req.socket['x-forwarded-for'];
+	console.log(req.socket);
 	res.send(`[${text}]` + model.getApiInstructionsHtml());
 });
 
