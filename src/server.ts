@@ -14,15 +14,16 @@ app.use(express.json());
 const port = process.env.PORT;
 
 app.get('/', (req: express.Request, res: express.Response) => {
-	// const text = req.socket.remoteAddress;
-	// const text = req.socket['remoteAddress'];
-	const text = req.socket['x-forwarded-for'];
-	// console.log(req.socket);
-	console.log('req.ip', req.ip);
+	// // const text = req.socket.remoteAddress;
+	// // const text = req.socket['remoteAddress'];
+	// const text = req.socket['x-forwarded-for'];
+	// // console.log(req.socket);
+	// console.log('req.ip', req.ip);
 
-	const clientIp = requestIp.getClientIp(req);
-    console.log('clientIp', clientIp);
-	res.send(`[${text}]` + model.getApiInstructionsHtml());
+	// const clientIp = requestIp.getClientIp(req);
+    // console.log('clientIp', clientIp);
+	// res.send(`[${text}]` + model.getApiInstructionsHtml());
+	res.send(model.getApiInstructionsHtml());
 });
 
 app.get('/jobs', (req: express.Request, res: express.Response) => {
