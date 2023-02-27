@@ -12,7 +12,8 @@ app.get('/', (req, res) => {
     // const text = req.socket.remoteAddress;
     // const text = req.socket['remoteAddress'];
     const text = req.socket['x-forwarded-for'];
-    console.log(req.socket);
+    // console.log(req.socket);
+    console.log('req.ip', req.ip);
     res.send(`[${text}]` + model.getApiInstructionsHtml());
 });
 app.get('/jobs', (req, res) => {
