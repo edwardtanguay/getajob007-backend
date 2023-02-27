@@ -3,6 +3,7 @@ import cors from 'cors';
 import * as model from './model.js';
 import * as tools from './tools.js';
 import dotenv from 'dotenv';
+import requestIp from 'request-ip';
 dotenv.config();
 const app = express();
 app.use(cors());
@@ -14,6 +15,8 @@ app.get('/', (req, res) => {
     const text = req.socket['x-forwarded-for'];
     // console.log(req.socket);
     console.log('req.ip', req.ip);
+    const clientIp = requestIp.getClientIp(req);
+    console.log('clientIp', clientIp);
     res.send(`[${text}]` + model.getApiInstructionsHtml());
 });
 app.get('/jobs', (req, res) => {

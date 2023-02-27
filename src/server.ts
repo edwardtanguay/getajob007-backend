@@ -4,6 +4,7 @@ import * as model from './model.js';
 import { IEditedJob, IAddedJob, IJob } from './interfaces.js';
 import * as tools from './tools.js';
 import dotenv from 'dotenv';
+import requestIp from 'request-ip';
 
 dotenv.config();
 
@@ -18,6 +19,9 @@ app.get('/', (req: express.Request, res: express.Response) => {
 	const text = req.socket['x-forwarded-for'];
 	// console.log(req.socket);
 	console.log('req.ip', req.ip);
+
+	const clientIp = requestIp.getClientIp(req);
+    console.log('clientIp', clientIp);
 	res.send(`[${text}]` + model.getApiInstructionsHtml());
 });
 
